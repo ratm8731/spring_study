@@ -1,5 +1,3 @@
-# spring_study 1주차
-
 # 1주차
 
 ## Dependency
