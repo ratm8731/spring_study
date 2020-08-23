@@ -45,7 +45,7 @@ ORM의 장단점
 
 하이버네이트 중점 구조
 
-![image-20200823223847043](C:\Users\kong\AppData\Roaming\Typora\typora-user-images\image-20200823223847043.png)
+![image-20200823223447672.png](https://github.com/jonggeunkong/spring_study/blob/master/image-20200823223447672.png)
 
 - SessionFactory
   - SessionFactory는 ConnectionProvider의 세션 및 클라이언트 팩토리
