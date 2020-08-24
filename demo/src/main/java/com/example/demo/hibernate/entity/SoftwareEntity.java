@@ -17,11 +17,14 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "software")
-public class SoftwareEntity implements Serializable{
-	private Long id;
+public class SoftwareEntity extends AbstractEntity{
+	@Column(name = "NAME")
 	private String name;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "INSERT_DATE")
 	private Date insertDate;
-	private int version;
+	@ManyToOne
+	@JoinColumn(name = "AGENT_ID")
 	private AgentEntity agent;
 	
 	public SoftwareEntity() {}
@@ -29,16 +32,8 @@ public class SoftwareEntity implements Serializable{
 		this.name = name;
 		this.insertDate = new Date();
 	}
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	@Column(name = "NAME")
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -46,8 +41,7 @@ public class SoftwareEntity implements Serializable{
 		this.name = name;
 	}
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "INSERT_DATE")
+	
 	public Date getInsertDate() {
 		return insertDate;
 	}
@@ -55,16 +49,7 @@ public class SoftwareEntity implements Serializable{
 		this.insertDate = insertDate;
 	}
 	
-	@Version
-	@Column(name = "VERSION")
-	public int getVersion() {
-		return version;
-	}
-	public void setVersion(int version) {
-		this.version = version;
-	}
-	@ManyToOne
-	@JoinColumn(name = "AGENT_ID")
+	
 	public AgentEntity getAgent() {
 		return agent;
 	}
@@ -73,8 +58,7 @@ public class SoftwareEntity implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Software [id=" + id + ", name=" + name + ", insertDate=" + insertDate + ", version=" + version
-				+ ", agent=" + agent + "]";
+		return "Software [id=" + id + ", name=" + name + ", insertDate=" + insertDate + ", agent=" + agent + "]";
 	}
 	
 }

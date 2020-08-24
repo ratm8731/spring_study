@@ -15,21 +15,17 @@ import java.util.Set;
 
 @Entity
 @Table(name = "admin_send_message")
-public class AdminSendMessageEntity implements Serializable{
-	private Long id;
+public class AdminSendMessageEntity extends AbstractEntity{
+	@Column(name = "MESSAGE")
 	private String message;
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "ADMIN_MESSAGE",
+				joinColumns = @JoinColumn(name = "MESSAGE_ID"),
+				inverseJoinColumns = @JoinColumn(name = "AGENT_ID")
+	)
 	private Set<AgentEntity> agents = new HashSet<>();
 	
-	@Id
-	@Column(name = "ID")
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
-	@Column(name = "MESSAGE")
 	public String getMessage() {
 		return message;
 	}
@@ -37,11 +33,7 @@ public class AdminSendMessageEntity implements Serializable{
 		this.message = message;
 	}
 	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name = "ADMIN_MESSAGE",
-				joinColumns = @JoinColumn(name = "MESSAGE_ID"),
-				inverseJoinColumns = @JoinColumn(name = "AGENT_ID")
-	)
+	
 	public Set<AgentEntity> getAgents() {
 		return agents;
 	}

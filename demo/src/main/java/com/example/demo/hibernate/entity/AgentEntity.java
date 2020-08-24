@@ -1,28 +1,21 @@
 package com.example.demo.hibernate.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Version;
 
 @Entity
 @Table(name = "agent")
@@ -39,14 +32,23 @@ import javax.persistence.Version;
 					"left join fetch agent.adminSendMessage message "+ 
 					"where agent.id = :id")
 })
-public class AgentEntity implements Serializable{
-	private Long id;
+public class AgentEntity extends AbstractEntity{
+	@Column(name = "NAME")
 	private String name;
+	@Column(name = "DEPARTMENT")
 	private String department;
+	@Column(name = "LEVEL")
 	private int level;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "CREATE_DATE")
 	private Date createDate;
-	private int version;
+	@OneToMany(mappedBy = "agent", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
 	private Set<SoftwareEntity> software = new HashSet<>();
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "ADMIN_MESSAGE",
+				joinColumns = @JoinColumn(name = "AGENT_ID"),
+				inverseJoinColumns = @JoinColumn(name = "MESSAGE_ID")
+	)
 	private Set<AdminSendMessageEntity> adminSendMessage = new HashSet<>();
 	
 	
@@ -56,17 +58,8 @@ public class AgentEntity implements Serializable{
 		this.name = name;
 	}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
-	@Column(name = "NAME")
+	
 	public String getName() {
 		return name;
 	}
@@ -74,7 +67,7 @@ public class AgentEntity implements Serializable{
 		this.name = name;
 	}
 	
-	@Column(name = "DEPARTMENT")
+	
 	public String getDepartment() {
 		return department;
 	}
@@ -82,7 +75,7 @@ public class AgentEntity implements Serializable{
 		this.department = department;
 	}
 	
-	@Column(name = "LEVEL")
+	
 	public int getLevel() {
 		return level;
 	}
@@ -90,8 +83,7 @@ public class AgentEntity implements Serializable{
 		this.level = level;
 	}
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "CREATE_DATE")
+	
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -99,16 +91,8 @@ public class AgentEntity implements Serializable{
 		this.createDate = createDate;
 	}
 	
-	@Version
-	@Column(name = "VERSION")
-	public int getVersion() {
-		return version;
-	}
-	public void setVersion(int version) {
-		this.version = version;
-	}
 	
-	@OneToMany(mappedBy = "agent", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval=true)
+	
 	public Set<SoftwareEntity> getSoftware() {
 		return software;
 	}
@@ -126,11 +110,7 @@ public class AgentEntity implements Serializable{
 		this.software = software;
 	}
 	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name = "ADMIN_MESSAGE",
-				joinColumns = @JoinColumn(name = "AGENT_ID"),
-				inverseJoinColumns = @JoinColumn(name = "MESSAGE_ID")
-	)
+	
 	public Set<AdminSendMessageEntity> getAdminSendMessage() {
 		return adminSendMessage;
 	}
@@ -142,7 +122,7 @@ public class AgentEntity implements Serializable{
 	@Override
 	public String toString() {
 		return "AgentEntity [id=" + id + ", name=" + name + ", department=" + department + ", level=" + level
-				+ ", createDate=" + createDate + ", version=" + version + "]";
+				+ ", createDate=" + createDate + "]";
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.hibernate.config;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -8,10 +8,13 @@ import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -26,16 +29,31 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan(basePackages = "com.example.demo")
 @EnableTransactionManagement
+@PropertySource("classpath:db/jdbc.yml")
 public class HibernateConfig {
+	
 	private static Logger logger = LoggerFactory.getLogger(HibernateConfig.class);
+	
+	@Value("${driverClassName}")
+	private String driverClassName;
+	
+	@Value("${url}")
+	private String url;
+	
+	@Value("${username}")
+	private String username;
+	
+	@Value("${password}")
+	private String password;
+	
 	
 	@Bean(destroyMethod = "close")
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-        dataSourceBuilder.driverClassName("org.h2.Driver");
-        dataSourceBuilder.url("jdbc:h2:mem:test");
-        dataSourceBuilder.username("sa");
-        dataSourceBuilder.password("est1234");
+        dataSourceBuilder.driverClassName(driverClassName);
+        dataSourceBuilder.url(url);
+        dataSourceBuilder.username(username);
+        dataSourceBuilder.password(password);
         return dataSourceBuilder.build();
     }
 	
@@ -52,12 +70,6 @@ public class HibernateConfig {
 	
 	@Bean
 	public SessionFactory sessionFactory() throws IOException {
-//		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
-//		sessionFactoryBean.setDataSource(getDataSource());
-//		sessionFactoryBean.setPackagesToScan("com.example.demo");
-//		sessionFactoryBean.setHibernateProperties(hibernateProperties());
-//		sessionFactoryBean.afterPropertiesSet();
-//		return sessionFactoryBean.getObject();
 		return new LocalSessionFactoryBuilder(getDataSource())
 				.scanPackages("com.example.demo")
 				.addProperties(hibernateProperties())
@@ -68,21 +80,4 @@ public class HibernateConfig {
 	public PlatformTransactionManager transactionManager() throws IOException {
 		return new HibernateTransactionManager(sessionFactory());
 	}
-	
-//	@Bean
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-//        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-//        em.setDataSource(getDataSource());
-//
-//        em.setPackagesToScan(new String[] { "com.example.demo.hibernate" });
-//        em.setPersistenceUnitName("org.hibernate.jpa.HibernatePersistenceProvider");
-//
-//        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//        vendorAdapter.setGenerateDdl(false);
-//        em.setJpaVendorAdapter(vendorAdapter);
-//
-//        return em;
-//    }
-	
-	
 }
