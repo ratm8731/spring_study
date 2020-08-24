@@ -326,6 +326,60 @@ ORM의 장단점
 
 - 일대다 매핑
 
+  - OneToMany
+    - targetEntity : 관계를 맺을 Entity Class를 정의
+    - mappedBy : 양방향 관계 설정시 관계의 주체가 되는 쪽에서 정의합니다.
+    - cascade : 
+      - 현 Entity의 변경에 대해 관계를 맺은 Entity도 변경 전략을 결정
+      - CascadeType라는 enum에 정의 되어 있으며 enum값에는 ALL, PERSIST, MERGE, REMOVE, REFRESH, DETACH
+    - fetch :
+      - 관계 Entity의 데이터 읽기 전략을 결정
+      - FetchType.EAGER : Entity의 정보를 미리 읽어오는 것
+      -  FetchType.LAZY : 실제로 요청하는 순간 가져옴
+    - orphanRemoval : 관계 Entity에서 변경이 일어난 경우 DB 변경을 같이 할지 결정
+
 - 다대다 매핑
 
-데이터 작업
+  - ManyToMany
+    - 두 Entity 가 서로를 Collection 으로 가지게 되는 관계
+    - @JoinTable : 조인 테이블로 사용할 테이블의 이름
+    - @joinColumn : 연결의 소유자로 간주 될 엔터티를 참조하는 열의 이름을 지정
+    - @inverseJoinColumn : 관계의 반대면의 이름을 지정
+
+하이버네이트을 이용한 데이터 작업
+
+- 조회
+
+  - 하이버네이트가 기본적으로 연관 관계를 지연 로딩(Lazy Loading)
+  - 지연로딩을 하는 이유는 성능때문
+  - @NamedQueries
+
+- 등록
+
+  - save
+
+- 수정
+
+  - save
+  - 일대다 관계에서 orphanRemoval 지정으로 주체 엔티티 수정 시 고아 레코드 삭제
+
+- 삭제
+
+  - remove
+  - cascade를 통해 모든 연관된 정보를 같이 삭제
+
+- 필드에 애너테이션을 적용 시 장점
+
+  - 엔티티 구성이 좀 더 명확해지며, 클래스 전체에 흩어져 있지 않고 필드 정의 부분에 모이게 됨
+
+  - 수정자(Setter)와 접근자(Getter)를 만들지 않아도 됨
+
+  - 근데 기존 작업에서 수정 부분에서 에러가 남
+
+    ```
+    agent.setName("테스트1");
+    agent.setDepartment("서버셀");
+    agentDao.save(agent);
+    ```
+
+    
