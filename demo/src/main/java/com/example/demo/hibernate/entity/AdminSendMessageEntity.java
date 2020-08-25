@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "admin_send_message")
-public class AdminSendMessageEntity extends AbstractEntity{
+public class AdminSendMessageEntity extends CommonAbstractEntity{
 	@Column(name = "MESSAGE")
 	private String message;
 	@ManyToMany(fetch=FetchType.EAGER)

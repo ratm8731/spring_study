@@ -17,7 +17,7 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "software")
-public class SoftwareEntity extends AbstractEntity{
+public class SoftwareEntity extends CommonAbstractEntity{
 	@Column(name = "NAME")
 	private String name;
 	@Temporal(TemporalType.DATE)

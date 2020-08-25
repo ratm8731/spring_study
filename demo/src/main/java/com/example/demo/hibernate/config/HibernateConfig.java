@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @ComponentScan(basePackages = "com.example.demo")
 @EnableTransactionManagement
-@PropertySource("classpath:db/jdbc.yml")
+@PropertySource("classpath:db/jdbc.properties")
 public class HibernateConfig {
 	
 	private static Logger logger = LoggerFactory.getLogger(HibernateConfig.class);
@@ -47,7 +47,7 @@ public class HibernateConfig {
 	private String password;
 	
 	
-	@Bean(destroyMethod = "close")
+	@Bean
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName(driverClassName);
@@ -71,7 +71,7 @@ public class HibernateConfig {
 	@Bean
 	public SessionFactory sessionFactory() throws IOException {
 		return new LocalSessionFactoryBuilder(getDataSource())
-				.scanPackages("com.example.demo")
+				.scanPackages("com.example.demo.hibernate.entity")
 				.addProperties(hibernateProperties())
 				.buildSessionFactory();
 	}

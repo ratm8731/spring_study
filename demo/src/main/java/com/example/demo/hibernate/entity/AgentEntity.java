@@ -1,5 +1,7 @@
 package com.example.demo.hibernate.entity;
 
+import org.dom4j.tree.AbstractEntity;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,7 +34,7 @@ import javax.persistence.TemporalType;
 					"left join fetch agent.adminSendMessage message "+ 
 					"where agent.id = :id")
 })
-public class AgentEntity extends AbstractEntity{
+public class AgentEntity extends CommonAbstractEntity {
 	@Column(name = "NAME")
 	private String name;
 	@Column(name = "DEPARTMENT")

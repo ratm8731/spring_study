@@ -37,7 +37,7 @@ public class SpringHibernateDemo {
 		List<AgentEntity> agents2 = agentDao.findAllWithSoftware();
 		listAgentsWithMessage(agents2);
 		
-		AgentEntity agent = agentDao.findByid(agents.get(2).getId());
+		AgentEntity agent = agentDao.findByid(agents.get(1).getId());
 //		logger.info("에이전트 이름 : "+agent.getName());
 //		logger.info("에이전트 - 소프트웨어 : "+agent.getSoftware().toString());
 //		logger.info("에이전트 - 받은 메시지 : "+agent.getAdminSendMessage().toString());
