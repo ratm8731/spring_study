@@ -4,7 +4,7 @@ ORM(ORM(Object Relational Mapping)
    * 객체 지향 프로그래밍은 클래스를 사용하고, 관계형 데이터베이스는 테이블을 사용한다
    * 객체 모델과 관계형 모델 간에 불일치 존재
    * ORm을 통해 객체 간의 관계를 바탕으로 SQL을 자동으로 생성하여 불일치를 해결
-2. 관계형 데이터 베이스 관리 시스템(Relational Database Manager System : RDBMS)의 관계형 데이터 구조와 자바의 객체 지향(Object-Oriented :OO) 모델 사이의 차이를 줄여서 개발자가 객체 모델을 사용해 프로그래밍에 집중하게 하면서 데이터 저장 관련 작업을 쉬게 수행
+2. 관계형 데이터 베이스 관리 시스템(Relational Database Manager System : RDBMS)의 관계형 데이터 구조와 자바의 객체 지향(Object-Oriented :OO) 모델 사이의 차이를 줄여서 개발자가 객체 모델을 사용해 프로그래밍에 집중하게 하면서 데이터 저장 관련 작업을 쉽게 수행
 3. ORM 라이브러리중 가장 성공한 라이브러리 하이버네이트
 
 ORM의 장단점
@@ -38,7 +38,7 @@ ORM의 장단점
 하이버 네이트
 
 - ORM을 구현하는 대표적인 프레임워크가 Hibernate이며, 이를 Java 표준 방식으로 정의한 것이 JPA
-- ibernate는 persistence framework
+- hibernate는 persistence framework
   - Java 환경에서 database로 data를 persist하는데 사용된다.
 - Persistence은 영구적인 매체에 데이터를 저장하고, 데이터를 생성 한 애플리케이션이 종료 된 후에도 언제든지 데이터를 검색하는 프로세스
   - db가 connection이 연결이 되어 있지 않아도 db를 가지고 일처리를 할 수 있다
