@@ -8,9 +8,9 @@ JPA (Java Persistence API) 란
      - JPA는 애플리케이션과 JDBC 사이에서 동작
      - **개발자가 JPA를 사용하면, JPA 내부에서 JDBC API를 사용하여 SQL을 호출하여 DB와 통신**
 
-![jpa](C:\Users\kong\IdeaProjects\spring_study\img\jpa.png)
+![jpa](https://github.com/ratm8731/spring_study/blob/master/img/jpa.png)
 
-![JPA1](C:\Users\kong\IdeaProjects\spring_study\img\JPA1.png)
+![JPA1](https://github.com/ratm8731/spring_study/blob/master/img/JPA1.png)
 
  	4. JPA 특징
      - 데이터를 객체지향적으로 관리할 수 있기 때문에 개발자는 비즈니스 로직에 집중
