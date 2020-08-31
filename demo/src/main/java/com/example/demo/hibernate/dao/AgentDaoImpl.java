@@ -15,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.hibernate.entity.AdminSendMessageEntity;
 import com.example.demo.hibernate.entity.AgentEntity;
 
-@Transactional
-@Repository("agentDao")
+//@Transactional
+//@Repository("agentDao")
 public class AgentDaoImpl implements AgentDao {
 	
 	private static final Log logger = LogFactory.getLog(AgentDaoImpl.class);

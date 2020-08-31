@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
-@Service
+//@Service
 public class DataInitializer {
     private Logger logger = LoggerFactory.getLogger(DataInitializer.class);
 
@@ -23,6 +23,7 @@ public class DataInitializer {
     @PostConstruct
     public void initDB() {
         logger.info("Start Database initialization");
+
         AgentEntity agetEntity = new AgentEntity("test1");
         AgentEntity agetEntity2 = new AgentEntity("test2");
         AgentEntity agetEntity3 = new AgentEntity("test3");

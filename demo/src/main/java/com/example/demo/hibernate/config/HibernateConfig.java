@@ -26,10 +26,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@ComponentScan(basePackages = "com.example.demo")
-@EnableTransactionManagement
-@PropertySource("classpath:db/jdbc.properties")
+//@Configuration
+//@ComponentScan(basePackages = "com.example.demo")
+//@EnableTransactionManagement
+//@PropertySource("classpath:db/jdbc.properties")
 public class HibernateConfig {
 	
 	private static Logger logger = LoggerFactory.getLogger(HibernateConfig.class);
