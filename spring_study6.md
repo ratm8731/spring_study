@@ -50,9 +50,7 @@
 
         3. 중간에 롤백이 발생한다면 모두 하나의 트랜잭션이기 때문에 진행사항이 모두 롤백됩니다.
 
-            
-
-           ![required.png](https://github.com/ratm8731/spring_study/blob/master/img/required.png?raw=true)
+        ![required.png](https://github.com/ratm8731/spring_study/blob/master/img/required.png?raw=true)
 
       - REQUIRES_NEW : 
 
@@ -60,7 +58,7 @@
 
         2. 각각의 트랜잭션이 롤백되더라도 서로 영향을 주지 않습니다.
 
-           ![requires_view.png](https://github.com/ratm8731/spring_study/blob/master/img/requires_view.png?raw=true)
+        ![requires_view.png](https://github.com/ratm8731/spring_study/blob/master/img/requires_view.png?raw=true)
 
       - MANDATORY : 
 
@@ -68,7 +66,7 @@
 
         2. 부모 트랜잭션이 없다면 예외를 발생시킵니다.
 
-           ![mandatory.png](https://github.com/ratm8731/spring_study/blob/master/img/mandatory.png?raw=true)
+        ![mandatory.png](https://github.com/ratm8731/spring_study/blob/master/img/mandatory.png?raw=true)
 
       - NASTED :
 
@@ -80,7 +78,7 @@
 
         4. 부모 트랜잭션이 존재하지 않는다면 새로운 트랜잭션을 생성합니다.
 
-           ![nastedimg.png](https://github.com/ratm8731/spring_study/blob/master/img/nastedimg.png?raw=true)
+        ![nastedimg.png](https://github.com/ratm8731/spring_study/blob/master/img/nastedimg.png?raw=true)
 
       - NEVER : 
 
@@ -88,7 +86,7 @@
 
         2. 부모 트랜잭션이 존재한다면 예외를 발생시킵니다.
 
-           ![naver.png](https://github.com/ratm8731/spring_study/blob/master/img/naver.png?raw=true)
+        ![naver.png](https://github.com/ratm8731/spring_study/blob/master/img/naver.png?raw=true)
 
       - SUPPORTS : 
 
@@ -99,8 +97,6 @@
 
         1. 부모 트랜잭션이 있다면 보류시킵니다. 
         2. 진행중인 부모 트랜잭션이 없다면 트랜잭션을 생성하지 않습니다.
-
-      - 
 
     - 타임아웃: 트랜잭션 인프라에 의하여, 이 트랜잭션 수행이 자동 타임아웃-롤백 될 때까지 얼마만큼의 시간이 주어지는가.
 
@@ -130,6 +126,4 @@
 
   - 스프링의 트랜잭션 추상화
 
-    
-
-![spring_global.png](https://github.com/ratm8731/spring_study/blob/master/img/spring_global.png?raw=true)
+    ![spring_global.png](https://github.com/ratm8731/spring_study/blob/master/img/spring_global.png?raw=true)
